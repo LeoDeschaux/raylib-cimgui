@@ -23,7 +23,7 @@
 
 .PHONY: all clean run
 
-CIMGUI_PATH = C:/Dev/middleware/clibs/cimgui
+CIMGUI_PATH = D:/Programming/C/cimgui
 
 # Define required environment variables
 #------------------------------------------------------------------------------------------------
@@ -35,7 +35,7 @@ PROJECT_NAME          ?= raylib_cimgui_demo
 PROJECT_VERSION       ?= 1.0
 PROJECT_BUILD_PATH    ?= .
 
-RAYLIB_PATH           ?= P:/Dev/raylib/lib/raylib
+RAYLIB_PATH           ?= C:/raylib/raylib
 
 # Locations of raylib.h and libraylib.a/libraylib.so
 # NOTE: Those variables are only used for PLATFORM_OS: LINUX, BSD
@@ -285,7 +285,7 @@ LDFLAGS = -L. -L$(CIMGUI_PATH) -L$(RAYLIB_RELEASE_PATH) -L$(RAYLIB_PATH)/src
 ifeq ($(PLATFORM),PLATFORM_DESKTOP)
     ifeq ($(PLATFORM_OS),WINDOWS)
         # NOTE: The resource .rc file contains windows executable icon and properties
-        LDFLAGS += $(RAYLIB_PATH)/src/raylib.rc.data
+        #LDFLAGS += $(RAYLIB_PATH)/src/raylib.rc.data
         # -Wl,--subsystem,windows hides the console window
         ifeq ($(BUILD_MODE), RELEASE)
             LDFLAGS += -Wl,--subsystem,windows
@@ -347,7 +347,7 @@ ifeq ($(PLATFORM),PLATFORM_DESKTOP)
         # NOTE: WinMM library required to set high-res timer resolution
         LDLIBS = -lraylib -lopengl32 -lgdi32 -lwinmm -lcimgui -lstdc++
         # Required for physac examples
-        LDLIBS += -static -lpthread
+        LDLIBS += -static
     endif
     ifeq ($(PLATFORM_OS),LINUX)
         # Libraries for Debian GNU/Linux desktop compiling
